@@ -4,9 +4,6 @@ Parse data (object literal / array) from a text string and return a data structu
 This is particularly useful for extracting data from a text string, that doesnt conform to the JSON spec and will fail when using JSON.parse. 
 e.g. data stored as a javascript object, without quotes surrounding the key:value pairs
 
-## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
 The NPM distribution is shipped with the following files:
 
 - __index.js__: Babel transpiled version for general use
@@ -19,6 +16,19 @@ Run the following from your projects' root folder to install and save as a depen
 ```
 npm install parse-string-data --save
 ```
+
+
+### Syntax
+> *`parseStringData`*`(`*`str`*`[,`*`initialValue`*`])`
+
+**Parameters**
+
+**str** *(string)* A string containing your data
+
+**initialValue** *(Object|Array)* An initial value for your data to be assigned to. 
+
+( *You must be sure of what data you are retrieving to use this parameter. e.g. if your data is an object, ensure you are passing through an object. Ditto for Array.*)
+
 
 ### Usage 
 Firstly, lets create a string containing some data, and require the module
@@ -41,6 +51,8 @@ The data in the above string will be extracted and returned in a data structure.
  buzz: 'bla'
 }
 ```
+
+
 #### Recursion
 When parsing the results, parse-string-data recursively checks the extracted value for data, allowing the data to be many levels deep
 
@@ -68,6 +80,49 @@ Parsing the above string will result in the following:
       2: 'pint'
     ]
   }
+}
+```
+
+
+#### Using an Initial Value
+When invoking the function, an Initial Value can be used via it's 2nd argument. This is useful for merging with existing data or overwriting defaults.
+
+```
+var data = {
+  lorem: 'ipsum',
+  dolor: 'sit amet'
+};
+var merged = parseStringData(str, data);
+```
+The above returns the following
+
+```
+{
+  lorem: 'ipsum',
+  dolor: 'sit amet',
+  foo: true,
+  bar: false,
+  buzz: 'bla'
+}
+```
+
+Extending your projects' defaults
+
+```
+var defaults = {
+  foo: true,
+  bar: true,
+  buzz: 'asdf'
+}
+
+var settings = parseStringData(str, defaults);
+```
+Settings now results in the following:
+```
+{
+ foo: true,
+ bar: false,
+ buzz: 'bla'
 }
 ```
 
