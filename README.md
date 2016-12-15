@@ -1,7 +1,8 @@
 # parse-string-data
 Parse data (object literal / array) from a text string and return a data structure
+
 This is particularly useful for extracting data from a text string, that doesnt conform to the JSON spec and will fail when using JSON.parse. 
-e.g. data stored as a javascript object literal or array
+e.g. data stored as a javascript object, without quotes surrounding the key:value pairs
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -71,15 +72,14 @@ Parsing the above string will result in the following:
 ```
 
 #### Data Formatting
+During parsing, the data values are run through a formatter to avoid returning values as strings.
+e.g.
+- 'true' and 'false' are formatted as Boolean
+- '0', '10', '-1' are formatted as a Number
+- 'null' is formatted as a null Object.
 
+Additional formatting can be submitted by a pull-request.
 
-## Running the tests
-
-This package uses eslint for code linting tests. Further unit tests will be added shortly.
-
-``` 
-npm run test
-```
 
 ## Contributing
 
