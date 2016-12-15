@@ -2,9 +2,15 @@
   "name": "parse-string-data",
   "version": "1.0.0",
   "description": "Parse data (object literal / array) from a text string and return a data structure",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es6.js",
+  "jsnext:main": "dist/index.es6.js",
   "scripts": {
-    "lint": "eslint ./",
+    "build": "babel src -d dist",
+    "build:watch": "babel src -d dist --watch",
+    "compile": "npm run build && cp src/index.js dist/index.es6.js",
+    "lint": "eslint ./src",
+    "prepublish": "npm run test && npm run compile",
     "test": "npm run lint"
   },
   "repository": {
