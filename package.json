@@ -1,6 +1,6 @@
 {
   "name": "parse-string-data",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Parse data (object literal / array) from a text string and return a data structure",
   "main": "dist/index.js",
   "module": "dist/index.es6.js",
